@@ -19,11 +19,16 @@ from sklearn.naive_bayes import MultinomialNB
 modelo = MultinomialNB()
 modelo.fit(dados,marcacoes)
 
-descobrir1 = [1,1,1]
-descobrir2 = [1,0,0]
-descobrir3 = [1,0,1]
+descobrir1 = [1,1,1] #Crocodilo (-1)
+descobrir2 = [1,0,0] #Jacare (1)
+descobrir3 = [1,0,1] #Jacare (1)
 
 descobrir = [descobrir1,descobrir2,descobrir3]
-
 res = modelo.predict(descobrir)
-print(res)
+for item in res:
+    if(item == -1):
+        print("Jacaré")
+    if(item == 1):
+        print("Crocodilo")
+
+
