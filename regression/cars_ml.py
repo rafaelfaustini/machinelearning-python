@@ -78,3 +78,6 @@ with tf.device('/device:GPU:0'):
     regressor.fit(X, y, batch_size = 300, epochs = 100)
     
     previsoes = regressor.predict(X)
+
+    y.mean()
+    previsoes.mean()
