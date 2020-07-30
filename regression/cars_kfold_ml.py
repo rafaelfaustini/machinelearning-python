@@ -88,4 +88,3 @@ resultados = cross_val_score(estimator=regressor, X=X, y=y,
                              cv = 10, scoring = 'neg_mean_absolute_error')    
 media = resultados.mean()
 desvio = resultados.std()    
-sklearn.metrics.SCORERS.keys()
