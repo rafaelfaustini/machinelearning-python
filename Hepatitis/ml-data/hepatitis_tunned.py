@@ -1,5 +1,13 @@
 
 import pandas as pd
+import numpy as np
+
+def replaceBinary(df,min=1,max=2):
+    media = df.mean()
+    df = df.replace(df.loc[np.logical_and(df>1, df<2)],int(media))
+    df = df.replace(to_replace=min, value=0)
+    df = df.replace(to_replace=max, value=1)
+    return df
 
 url = 'http://archive.ics.uci.edu/ml/machine-learning-databases/hepatitis/hepatitis.data'
 labels = ['Class', 'Age', 'Sex', 'Steroid', 'Antivirals', 'Fatigue', 'Malaise', 'Anorexia', 'LiverBig', 'LiverFirm', 'SpleenPalpable', 'Spiders', 'Ascites','Varices','Bilirubin','AlkPhosphate','Sgot', 'Albumin', 'Protime', 'Histology']
@@ -15,9 +23,29 @@ for col in cols:
   else:
     avg = df[col].mean()
     df[col] = df[col].fillna(avg)
-    
-df["Class"] = df["Class"].replace(to_replace=1, value=0)
-df["Class"] = df["Class"].replace(to_replace=2, value=1)
+
+df["Class"] = replaceBinary(df["Class"])
+df["Sex"] = replaceBinary(df["Sex"])
+df["Steroid"] = replaceBinary(df["Steroid"])
+df["Antivirals"] = replaceBinary(df["Antivirals"])
+df["Fatigue"] = replaceBinary(df["Fatigue"])
+df["Malaise"] = replaceBinary(df["Malaise"])
+df["Anorexia"] = replaceBinary(df["Anorexia"])
+df["LiverBig"] = replaceBinary(df["LiverBig"])
+df["LiverFirm"] = replaceBinary(df["LiverFirm"])
+df["SpleenPalpable"] = replaceBinary(df["SpleenPalpable"])
+df["Spiders"] = replaceBinary(df["Spiders"])
+df["Ascites"] = replaceBinary(df["Ascites"])
+df["Varices"] = replaceBinary(df["Varices"])
+df["Histology"] = replaceBinary(df["Histology"])
+
+
+
+
+
+
+
+
 
 
 x = df.loc[:, 'Age':]
