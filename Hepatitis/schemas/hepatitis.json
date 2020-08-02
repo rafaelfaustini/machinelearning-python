@@ -1,0 +1,30 @@
+{
+  "model": {
+    "type": "object",
+    "properties": {
+      "Age": { "type": "integer" },
+      "Sex": { "type": "integer" },
+      "Steroid": { "type": "integer"},
+      "Antivirals": { "type": "integer"},
+      "Fatigue": { "type": "integer"},
+      "Malaise": { "type": "integer"},
+      "Anorexia": { "type": "integer"},
+      "LiverBig": { "type": "integer"},
+      "LiverFirm": { "type": "integer"},
+      "SpleenPalpable": { "type": "integer"},
+      "Spiders": { "type": "integer"},
+      "Ascites": { "type": "integer"},
+      "Varices": { "type": "integer"},
+      "Bilirubin": { "type": "number"},
+      "AlkPhosphate": { "type": "integer"},
+      "Sgot": { "type": "integer"},
+      "Albumin": { "type": "number"},
+      "Protime": { "type": "integer"},
+      "Histology": { "type": "integer"}
+    },
+    "required": [ "Age","Sex","Steroid","Antivirals",
+    "Fatigue","Malaise","Anorexia","LiverBig","LiverFirm","SpleenPalpable",
+    "Spiders","Ascites","Varices","Bilirubin","AlkPhosphate","Sgot","Albumin",
+    "Protime","Histology"  ]
+  }
+}
