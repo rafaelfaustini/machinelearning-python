@@ -103,12 +103,12 @@ model = KerasClassifier(build_fn=criarRede)
 parametros = {
     'batch_size': [10],
     'epochs': [200],
-    'optimizer': ['adam'],
-    'loss': ['binary_crossentropy', 'poisson'],
-    'kernel_initializer': ['random_uniform'],
-    'activation': ['relu'],
-    'neurons': [16, 32],
-    'dropout': [0.2,0.3,0.4]
+    'optimizer': ['sgd','rmsprop','adadelta','nadam','adam'],
+    'loss': ['binary_crossentropy'],
+    'kernel_initializer': ['random_uniform','random_normal', 'truncated_normal', 'glorot_normal', 'identity'],
+    'activation': ['relu', 'softmax', 'softplus', 'selu', 'elu' ],
+    'neurons': [16, 32, 64],
+    'dropout': [0.2, 0.4, 0.6]
 }
 
 grid_search = GridSearchCV(estimator=model, param_grid=parametros, scoring='accuracy', cv=5)

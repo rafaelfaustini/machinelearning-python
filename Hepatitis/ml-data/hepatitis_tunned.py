@@ -64,17 +64,17 @@ from sklearn.model_selection import cross_val_score
 def criarRede():
   with tf.device('/device:GPU:0'):
     model = Sequential()
-    model.add(Dense(units=16, activation='relu', kernel_initializer='random_uniform', input_dim = 19))
-    model.add(Dropout(0.2))   
-    model.add(Dense(units=16, activation='relu', kernel_initializer='random_uniform'))  
-    model.add(Dropout(0.2))   
+    model.add(Dense(units=16, activation='selu', kernel_initializer='random_uniform', input_dim = 19))
+    model.add(Dropout(0.4))   
+    model.add(Dense(units=16, activation='selu', kernel_initializer='random_uniform'))  
+    model.add(Dropout(0.4))   
     model.add(Dense(units=1, activation= 'sigmoid'))
-    model.compile(optimizer='adam', loss='poisson',
+    model.compile(optimizer='rmsprop', loss='binary_crossentropy',
                         metrics = ['accuracy'])
   return model
 
 model = criarRede()
-h = model.fit(x, y, validation_split=0.33, batch_size=10, epochs=200)
+h = model.fit(x, y, validation_split=0.33, batch_size=10, epochs=300)
 
 # Save Model Settings
 model_json = model.to_json()
