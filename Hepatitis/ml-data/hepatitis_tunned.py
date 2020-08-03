@@ -64,9 +64,9 @@ from sklearn.model_selection import cross_val_score
 def criarRede():
   with tf.device('/device:GPU:0'):
     model = Sequential()
-    model.add(Dense(units=16, activation='selu', kernel_initializer='random_uniform', input_dim = 19))
+    model.add(Dense(units=16, activation='selu', kernel_initializer='identity', input_dim = 19))
     model.add(Dropout(0.4))   
-    model.add(Dense(units=16, activation='selu', kernel_initializer='random_uniform'))  
+    model.add(Dense(units=16, activation='selu', kernel_initializer='identity'))  
     model.add(Dropout(0.4))   
     model.add(Dense(units=1, activation= 'sigmoid'))
     model.compile(optimizer='rmsprop', loss='binary_crossentropy',
