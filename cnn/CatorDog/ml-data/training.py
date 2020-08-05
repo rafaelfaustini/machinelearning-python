@@ -15,11 +15,16 @@ with tf.device('/gpu:0'):
     model.add(BatchNormalization())
     model.add(MaxPooling2D(pool_size = (2,2)))
     
+    model.add(Conv2D(32, (3,3), input_shape = (64, 64, 3), activation = 'relu'))
+    model.add(BatchNormalization())
+    model.add(MaxPooling2D(pool_size = (2,2)))
+    
     model.add(Flatten())
     
     model.add(Dense(units =  128, activation = 'relu'))
     model.add(Dropout(0.2))
     model.add(Dense(units = 128, activation = 'relu'))
+    model.add(Dropout(0.2))
     model.add(Dense(units = 1, activation = 'sigmoid'))
     
     model.compile(optimizer = 'adam', loss = 'binary_crossentropy',
@@ -34,15 +39,40 @@ with tf.device('/gpu:0'):
     gerador_teste = ImageDataGenerator(rescale = 1./255)
 
     
-    base_treinamento = gerador_treinamento.flow_from_directory('dataset/training_set',
+    base_treinamento = gerador_treinamento.flow_from_directory('../dataset/training_set',
                                                                target_size = (64, 64),
                                                                batch_size = 32,
                                                                class_mode = 'binary')
-    base_teste = gerador_teste.flow_from_directory('dataset/test_set',
+    base_teste = gerador_teste.flow_from_directory('../dataset/test_set',
                                                    target_size = (64, 64),
                                                    batch_size = 32,
                                                    class_mode = 'binary')
-    model.fit_generator(base_treinamento, steps_per_epoch= 4000/ 32,
-                        epochs = 5, validation_data = base_teste,
+    h =  model.fit_generator(base_treinamento, steps_per_epoch= 4000/ 32,
+                        epochs = 30, validation_data = base_teste,
                         validation_steps = 1000 / 32)
-                    
+   
+                 
+    
+    # Save Model Settings
+model_json = model.to_json()
+with open('model_catdog.json', 'w') as json_file:
+    json_file.write(model_json)
+model.save_weights('model_catdog.h5')
+
+import matplotlib.pyplot as plt
+
+plt.plot(h.history['accuracy'])
+plt.plot(h.history['val_accuracy'])
+plt.title('Acurácia do modelo')
+plt.ylabel('acurácia')
+plt.xlabel('época')
+plt.legend(['Treino', 'Teste'], loc='lower right')
+plt.show()
+
+plt.plot(h.history['loss'])
+plt.plot(h.history['val_loss'])
+plt.title('Perda do modelo')
+plt.ylabel('perda')
+plt.xlabel('época')
+plt.legend(['train', 'test'], loc='lower right')
+plt.show()
