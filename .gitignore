@@ -96,8 +96,10 @@ ENV/
 
 # mkdocs documentation
 /site
-
 # mypy
 .mypy_cache/
 
 tests/
+*.jpg
+cnn/CatorDog/ml-
+**checkpoints

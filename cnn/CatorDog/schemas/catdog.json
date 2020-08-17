@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "object",
+    "properties": {
+      "Image": { "type": "string" },
+    },
+    "required": ["Image"]
+  }
+}
