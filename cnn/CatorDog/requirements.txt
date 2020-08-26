@@ -24,7 +24,4 @@ jsonschema == 3.2.0
 numpy == 1.18.5
 
 # ml-data\training.py: 62
-~atplotlib == 3.2.2
-
-# ml-data\training.py: 1
-~ensorflow_gpu == 2.2.0
+matplotlib == 3.2.2
