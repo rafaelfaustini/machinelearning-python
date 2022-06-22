@@ -21,7 +21,7 @@ flask_jsonschema_validator == 0.0.4
 jsonschema == 3.2.0
 
 # machinelearning.py: 1
-numpy == 1.18.5
+numpy == 1.22.0
 
 # ml-data\training.py: 62
 matplotlib == 3.2.2
